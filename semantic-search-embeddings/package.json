@@ -2,9 +2,14 @@
   "name": "semantic-search-embeddings",
   "version": "1.0.0",
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "ts-node index.ts",
+    "cli": "ts-node cli.ts",
+    "search": "ts-node cli.ts search",
+    "interactive": "ts-node cli.ts interactive"
   },
   "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^14.0.0",
     "dotenv": "^17.2.1",
     "openai": "^4.0.0",
     "ts-node": "^10.0.0",

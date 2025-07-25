@@ -48,9 +48,12 @@ function cosineSimilarity(a: number[], b: number[]): number {
 export const getEmbeddedDocs = async (query: string): Promise<SearchResult[]> => {
   const docs = await embeddedDocs();
   const queryEmbedding = await embedText(query);
-  return docs.map(doc => ({
+  const results = docs.map(doc => ({
     id: doc.id,
     content: doc.content,
     score: cosineSimilarity(queryEmbedding, doc.embedding),
   }));
+  
+  // Sort by similarity score in descending order (highest first)
+  return results.sort((a, b) => b.score - a.score);
 };
