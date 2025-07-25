@@ -1,13 +1,15 @@
 # Semantic Search with OpenAI Embeddings
 
-Semantic search system using OpenAI embeddings to find relevant documents based on natural language queries.
+Semantic search system using OpenAI embeddings to find relevant documents and provide step-by-step instructions based on natural language queries.
 
 ## 🚀 Features
 
 - **Semantic Search**: Find relevant documents using OpenAI embeddings
-- **Interactive CLI**: Command line interface with interactive mode
+- **Step-by-Step Instructions**: Get detailed tutorials for common tasks
+- **Smart Recommendations**: Automatic instruction display based on relevance
+- **Expanded Knowledge Base**: 15+ categories covering account, billing, support, and more
 - **Colored Results**: Visual display with colors based on relevance
-- **Multiple Queries**: Support for multiple searches in a session
+- **Fast Performance**: Quick search results with proper sorting
 
 ## 📋 Prerequisites
 
@@ -37,25 +39,20 @@ OPENAI_API_KEY=your_api_key_here
 ### Simple Search
 
 ```bash
-npm run search -- "How to contact support?"
+npm run search -- "How to reset my password?"
 ```
 
 ### Search with Custom Limit
 
 ```bash
-npm run search -- "How to reset password?" --limit 5
+npm run search -- "How to request a refund?" --limit 5
 ```
 
-### Interactive Mode
+### Force Instructions Display
 
 ```bash
-npm run interactive
+npm run search -- "How to contact support?" --instructions
 ```
-
-In interactive mode, you can:
-- Type queries normally
-- Use `help` to see available commands
-- Use `exit` to quit
 
 ### Available Commands
 
@@ -65,37 +62,55 @@ npm run cli -- --help
 
 # Show search command help
 npm run cli -- search --help
-
-# Show interactive mode help
-npm run cli -- interactive --help
 ```
 
 ## 📊 Example Output
 
 ```
 🔍 Starting semantic search...
-Query: "How to contact support?"
+Query: "How to reset my password?"
 Result limit: 3
 
-✅ Search completed in 1439ms
+✅ Search completed in 1637ms
 
 📋 Most relevant results:
 
-1. How to contact customer support
-   ID: 3 | Score: (70.7% similar)
+1. How to reset your password in our platform
+   Category: Account Management | Score: (74.2% similar)
 
 2. How to change your email address
-   ID: 4 | Score: (35.8% similar)
+   Category: Account Management | Score: (51.9% similar)
 
-3. How to reset your password in our platform
-   ID: 1 | Score: (35.1% similar)
+3. How to update your payment method
+   Category: Billing | Score: (44.1% similar)
+
+📖 Instructions:
+────────────────────────────────────────────────────────────
+🔐 Password Reset Instructions:
+1. Go to the login page
+2. Click on "Forgot Password?" link
+3. Enter your email address
+4. Check your email for a reset link
+5. Click the link and create a new password
+6. Make sure your new password is at least 8 characters long with numbers and symbols
+────────────────────────────────────────────────────────────
 ```
 
 ## 🎨 Result Colors
 
-- 🟢 **Green**: High relevance (>70% similarity)
-- 🟡 **Yellow**: Medium relevance (50-70% similarity)
-- 🔴 **Red**: Low relevance (<50% similarity)
+- 🟢 **Green**: High relevance (>70% similarity) - Instructions shown automatically
+- 🟡 **Yellow**: Medium relevance (50-70% similarity) - Instructions shown automatically
+- 🔴 **Red**: Low relevance (<50% similarity) - Instructions not shown unless forced
+
+## 📚 Knowledge Base Categories
+
+- **Account Management**: Password reset, email changes, subscription management
+- **Billing**: Payment methods, refunds, invoices
+- **Support**: Contact information, bug reports
+- **Security**: Two-factor authentication, privacy settings
+- **Data Management**: Data export, notifications
+- **Shipping & Delivery**: Shipping times, tracking
+- **Privacy**: Privacy settings, data sharing
 
 ## 📁 Project Structure
 
@@ -105,7 +120,7 @@ semantic-search-embeddings/
 │   ├── client/
 │   │   └── open-ai-sdk.ts    # OpenAI client and embedding functions
 │   └── docs/
-│       └── documents.ts      # Documents for search
+│       └── documents.ts      # Knowledge base with instructions
 ├── cli.ts                    # Command line interface
 ├── index.ts                  # Original script
 ├── package.json
@@ -117,7 +132,6 @@ semantic-search-embeddings/
 - `npm start`: Run the original script
 - `npm run cli`: Run the main CLI
 - `npm run search`: Run direct search
-- `npm run interactive`: Start interactive mode
 
 ## 🛡️ Error Handling
 
@@ -129,9 +143,10 @@ The system includes robust error handling:
 
 ## 📈 Performance
 
-- Typical response time: 1-2 seconds
+- Typical response time: 1-3 seconds
 - Embedding cache for better performance
-- Asynchronous processing for multiple queries
+- Results sorted by relevance score
+- Smart instruction display based on similarity
 
 ## 🤝 Contributing
 

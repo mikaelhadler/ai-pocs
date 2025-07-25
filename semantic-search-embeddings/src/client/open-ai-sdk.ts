@@ -7,6 +7,8 @@ dotenv.config();
 interface Document {
   id: number;
   content: string;
+  instructions: string;
+  category: string;
 }
 
 interface EmbeddedDocument extends Document {
@@ -17,6 +19,8 @@ interface SearchResult {
   id: number;
   content: string;
   score: number;
+  instructions: string;
+  category: string;
 }
 
 const openai = new OpenAI({
@@ -52,6 +56,8 @@ export const getEmbeddedDocs = async (query: string): Promise<SearchResult[]> =>
     id: doc.id,
     content: doc.content,
     score: cosineSimilarity(queryEmbedding, doc.embedding),
+    instructions: doc.instructions,
+    category: doc.category,
   }));
   
   // Sort by similarity score in descending order (highest first)
