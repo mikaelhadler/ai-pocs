@@ -1,4 +1,4 @@
-# Semantic Search with OpenAI Embeddings
+# Semantic QA System with OpenAI Embeddings
 
 Semantic search system using OpenAI embeddings to find relevant documents and provide step-by-step instructions based on natural language queries.
 
